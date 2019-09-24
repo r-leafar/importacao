@@ -12,7 +12,6 @@ import importacao.model.Produto;
 
 public class ProdutoControllerUniplus extends ProdutoController {
 
-	
 
 	private void setProduto(ResultSet rs) {
 		produto = new Produto();
@@ -88,6 +87,7 @@ public class ProdutoControllerUniplus extends ProdutoController {
 
 			ProdutoControllerUniplus prod;
 			prod = new ProdutoControllerUniplus();
+			prod.set(new Produto());
 			prod.setCon(novo.getCon());
 
 			while (resultSet.next()) {

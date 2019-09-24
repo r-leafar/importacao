@@ -14,15 +14,13 @@ import java.util.List;
 
 import importacao.model.Produto;
 
-public class ProdutoController extends Controller<Produto>{
+public class ProdutoController extends Controller<Produto> {
 
-	
 	public Produto produto = null;
 
 	public ProdutoController() {
-		super(new Produto());
+		this.set(new Produto());
 	}
-
 
 	public void inserir() throws SQLException, NoSuchMethodException, SecurityException, IllegalAccessException,
 			IllegalArgumentException, InvocationTargetException, NoSuchFieldException {

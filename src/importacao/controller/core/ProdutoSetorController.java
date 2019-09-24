@@ -15,10 +15,9 @@ public class ProdutoSetorController extends Controller<ProdutoSetor> {
 	public ProdutoSetor setor = null;
 
 	public ProdutoSetorController() {
-		super(new ProdutoSetor());
+		this.set(new ProdutoSetor());
 	}
 
-	
 	public void inserir() throws SQLException, NoSuchMethodException, SecurityException, IllegalAccessException,
 			IllegalArgumentException, InvocationTargetException, NoSuchFieldException {
 
@@ -66,7 +65,7 @@ public class ProdutoSetorController extends Controller<ProdutoSetor> {
 
 			pos++;
 		}
-		
+
 		ps.executeUpdate();// Ainda não foi commitado
 		this.con.commit();
 	}
