@@ -29,13 +29,16 @@ public class ProdutoControllerUniplus extends ProdutoController {
 
 			if (icms == 0) {
 				produto.setIcms("FF");
+				produto.setIcmsnfe("FF");
 				produto.setCfopsat("5405");
 			} else {
 				produto.setIcms(icms);
+				produto.setIcmsnfe(icms);
 				produto.setCfopsat("5102");
 			}
 
 			produto.setCodigocsosn(rs.getString("situacaotributariasn"));
+			produto.setCodigocsosnnfe(rs.getString("situacaotributariasn"));
 
 			switch (rs.getInt("idunidademedida")) {
 			case 4:
