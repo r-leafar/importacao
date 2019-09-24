@@ -14,7 +14,7 @@ import importacao.annotations.Table;
  *
  * @author admin
  */
-@Table(name="produto")
+@Table(name = "produto")
 public class Produto {
 
 	// datacadastro
@@ -401,6 +401,10 @@ public class Produto {
 
 	public void setIcmsnfe(String icmsnfe) {
 		this.icmsnfe = icmsnfe;
+	}
+
+	public void setIcmsnfe(double icms) {
+		this.icmsnfe = String.format("%.2f", icms);
 	}
 
 	public LocalDate getDatacadastro() {
