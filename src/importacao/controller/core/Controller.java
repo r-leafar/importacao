@@ -17,7 +17,8 @@ public class Controller<T> {
 	public Connection con;
 
 	public Controller(T model) {
-
+		
+		//Pega o nome da tabela pela annotation
 		this.set(model);
 		Annotation annotation = this.get().getClass().getAnnotation(Table.class);
 		Table table = (Table) annotation;
