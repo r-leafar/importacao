@@ -8,10 +8,13 @@ package importacao.model;
 import java.time.LocalDate;
 import java.util.Collections;
 
+import importacao.annotations.Table;
+
 /**
  *
  * @author admin
  */
+@Table(name="produto")
 public class Produto {
 
 	// datacadastro
