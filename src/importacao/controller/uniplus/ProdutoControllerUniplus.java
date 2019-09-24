@@ -1,22 +1,18 @@
 package importacao.controller.uniplus;
 
 import java.lang.reflect.InvocationTargetException;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+import importacao.controller.core.ProdutoController;
 import importacao.dao.ConnectionFactoryPostgre;
 import importacao.model.Produto;
 
 public class ProdutoControllerUniplus extends ProdutoController {
 
-	private void setCon(Connection con) throws SQLException {
-		this.con = con;
-		this.con.setAutoCommit(false);
-	}
+	
 
 	private void setProduto(ResultSet rs) {
 		produto = new Produto();
@@ -128,17 +124,17 @@ public class ProdutoControllerUniplus extends ProdutoController {
 		ConnectionFactoryPostgre novo = new ConnectionFactoryPostgre();
 		ConnectionFactoryPostgre antigo = new ConnectionFactoryPostgre();
 
-		novo.setUser(ConnectionFactoryPostgre.getConfiginfo("user"));
-		novo.setPasswd(ConnectionFactoryPostgre.getConfiginfo("pass"));
-		novo.setIp(ConnectionFactoryPostgre.getConfiginfo("ip"));
-		novo.setBanco(ConnectionFactoryPostgre.getConfiginfo("db"));
+		novo.setDB_USER(ConnectionFactoryPostgre.getConfiginfo("user"));
+		novo.setDB_PASSWORD(ConnectionFactoryPostgre.getConfiginfo("pass"));
+		novo.setDB_HOST(ConnectionFactoryPostgre.getConfiginfo("ip"));
+		novo.setDB_DATABASE(ConnectionFactoryPostgre.getConfiginfo("db"));
 
 		novo.getConnectionFactory();
 
-		antigo.setUser(ConnectionFactoryPostgre.getConfiginfo("user_"));
-		antigo.setPasswd(ConnectionFactoryPostgre.getConfiginfo("pass_"));
-		antigo.setIp(ConnectionFactoryPostgre.getConfiginfo("ip_"));
-		antigo.setBanco(ConnectionFactoryPostgre.getConfiginfo("db_"));
+		antigo.setDB_USER(ConnectionFactoryPostgre.getConfiginfo("user_"));
+		antigo.setDB_PASSWORD(ConnectionFactoryPostgre.getConfiginfo("pass_"));
+		antigo.setDB_HOST(ConnectionFactoryPostgre.getConfiginfo("ip_"));
+		antigo.setDB_DATABASE(ConnectionFactoryPostgre.getConfiginfo("db_"));
 		
 		antigo.getConnectionFactory();
 

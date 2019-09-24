@@ -15,18 +15,18 @@ import javax.swing.JOptionPane;
 public class ConnectionFactoryPostgre extends ConnectionFactory {
 
     private Connection con = null;
-    private String ip ="";
-    private String porta = "5432";
-    private String banco = "";
-    private String user = "";
-    private String passwd = "";
-
+    private String DB_DRIVER ="org.postgresql.Driver";
+    private String DB_HOST ="";
+    private String DB_PORT = "5432";
+    private String DB_DATABASE  = "";
+    private String DB_USER  = "";
+    private String DB_PASSWORD  = "";
 
     public boolean getConnectionFactory() throws SQLException {
         try {
 
-            Class.forName("org.postgresql.Driver");
-            this.con = DriverManager.getConnection("jdbc:postgresql://" + this.getIp() + ":" + this.getPorta() + "/" + this.getBanco(), this.getUser(), this.getPasswd());
+            Class.forName(this.DB_DRIVER);
+            this.con = DriverManager.getConnection("jdbc:postgresql://" + this.getDB_HOST() + ":" + this.getDB_PORT() + "/" + this.getDB_DATABASE(), this.getDB_USER(), this.getDB_PASSWORD());
             return true;
         } catch (ClassNotFoundException e) {
             System.out.println(e);
@@ -34,7 +34,55 @@ public class ConnectionFactoryPostgre extends ConnectionFactory {
 
         }
     }
+    public String getDB_DRIVER() {
+		return DB_DRIVER;
+	}
 
+	public void setDB_DRIVER(String dB_DRIVER) {
+		DB_DRIVER = dB_DRIVER;
+	}
+
+	public String getDB_HOST() {
+		return DB_HOST;
+	}
+
+	public void setDB_HOST(String dB_HOST) {
+		DB_HOST = dB_HOST;
+	}
+
+	public String getDB_PORT() {
+		return DB_PORT;
+	}
+
+	public void setDB_PORT(String dB_PORT) {
+		DB_PORT = dB_PORT;
+	}
+
+	public String getDB_DATABASE() {
+		return DB_DATABASE;
+	}
+
+	public void setDB_DATABASE(String dB_DATABASE) {
+		DB_DATABASE = dB_DATABASE;
+	}
+
+	public String getDB_USER() {
+		return DB_USER;
+	}
+
+	public void setDB_USER(String dB_USER) {
+		DB_USER = dB_USER;
+	}
+
+	public String getDB_PASSWORD() {
+		return DB_PASSWORD;
+	}
+
+	public void setDB_PASSWORD(String dB_PASSWORD) {
+		DB_PASSWORD = dB_PASSWORD;
+	}
+
+	
     public boolean verificaTabelas() throws SQLException {
 
         PreparedStatement ps_post = this.getCon().prepareStatement("SELECT count(*)as total FROM produto limit 10");
@@ -97,44 +145,5 @@ public class ConnectionFactoryPostgre extends ConnectionFactory {
         return con;
     }
 
-    public String getIp() {
-        return ip;
-    }
-
-    public void setIp(String ip) {
-        this.ip = ip;
-    }
-
-    public String getPorta() {
-        return porta;
-    }
-
-    public void setPorta(String porta) {
-        this.porta = porta;
-    }
-
-    public String getBanco() {
-        return banco;
-    }
-
-    public void setBanco(String banco) {
-        this.banco = banco;
-    }
-
-    public String getUser() {
-        return user;
-    }
-
-    public void setUser(String user) {
-        this.user = user;
-    }
-
-    public String getPasswd() {
-        return passwd;
-    }
-
-    public void setPasswd(String passwd) {
-        this.passwd = passwd;
-    }
-
+   
 }

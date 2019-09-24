@@ -1,4 +1,4 @@
-package importacao.controller.uniplus;
+package importacao.controller.core;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -14,48 +14,15 @@ import java.util.List;
 
 import importacao.model.Produto;
 
-public class ProdutoController {
+public class ProdutoController extends Controller<Produto>{
 
-	Connection con;
-	Produto produto = null;
-	List<String> fieldslist;
-	String sql="";
+	
+	public Produto produto = null;
 
 	public ProdutoController() {
-		super();
-		init();
+		super(new Produto());
 	}
 
-	public void init() {
-		//Instancia o arraylist
-		fieldslist = new ArrayList<String>();
-		//pega o nome de todos os atributos da classe produto
-		//e adiciona no arraylist
-		Field[] fieldsraw = Produto.class.getDeclaredFields();
-		for (Field f : fieldsraw) {
-			fieldslist.add(f.getName());
-		}
-		
-
-		//cria a query de insert
-		String sqlfield = "INSERT INTO produto (";
-		String sqlparam = "VALUES (";
-
-		for (String campo : fieldslist) {
-			sqlfield += campo.concat(",");
-			sqlparam += "?,";
-		}
-
-		sqlfield = sqlfield.substring(0, sqlfield.length() - 1);
-		sqlfield = sqlfield.concat(") ");
-
-		sqlparam = sqlparam.substring(0, sqlparam.length() - 1);
-		sqlparam = sqlparam.concat(") ");
-
-		sql = sqlfield.concat(sqlparam);
-		
-		
-	}
 
 	public void inserir() throws SQLException, NoSuchMethodException, SecurityException, IllegalAccessException,
 			IllegalArgumentException, InvocationTargetException, NoSuchFieldException {
@@ -68,7 +35,7 @@ public class ProdutoController {
 
 		for (String nome : fieldslist) {
 			String key = nome.substring(0, 1).toUpperCase() + nome.substring(1).toLowerCase();
-			Field field = Produto.class.getDeclaredField(nome);
+			Field field = this.get().getClass().getDeclaredField(nome);
 			Class cls = produto.getClass();
 
 			if (field.getType().equals(String.class)) {

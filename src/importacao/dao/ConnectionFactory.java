@@ -8,14 +8,14 @@ import importacao.controller.uniplus.ProdutoControllerUniplus;
 
 public class ConnectionFactory {
 
-	private static Properties configinfo;
+	private static Properties CONFIGINFO;
 	
 	
 	public ConnectionFactory() {
-		this.configinfo =initProperties();
+		this.CONFIGINFO =initProperties();
 	}
 	public static String getConfiginfo(String key) {
-		return configinfo.getProperty(key);
+		return CONFIGINFO.getProperty(key);
 	}
 	private Properties initProperties() {
 		try  {
